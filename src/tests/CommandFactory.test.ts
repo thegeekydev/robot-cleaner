@@ -28,4 +28,40 @@ describe("Command Factory", () => {
 
     expect(commandFactory.CommandsAreComplete()).toBeTruthy();
   });
+
+  it("should accepts 10,000 commands", () => {
+    const commandFactory = new CommandFactory();
+
+    commandFactory.AddCommand("10000");
+    commandFactory.AddCommand("0 0");
+    for (let i = 0; i < 10000; i++) {
+      commandFactory.AddCommand("W 1");
+    }
+
+    expect(commandFactory.CommandsAreComplete()).toBeTruthy();
+  });
+
+  it("should not allows lesser than the limit", () => {
+    const commandFactory = new CommandFactory();
+
+    commandFactory.AddCommand("-1");
+    commandFactory.AddCommand("0 0");
+    for (let i = 0; i < 10000; i++) {
+      commandFactory.AddCommand("W 1");
+    }
+
+    expect(commandFactory.CommandsAreComplete()).toBeTruthy();
+  });
+
+  it("should not allows higher than the limit", () => {
+    const commandFactory = new CommandFactory();
+
+    commandFactory.AddCommand("11000");
+    commandFactory.AddCommand("0 0");
+    for (let i = 0; i < 20000; i++) {
+      commandFactory.AddCommand("W 1");
+    }
+
+    expect(commandFactory.CommandsAreComplete()).toBeTruthy();
+  });
 });

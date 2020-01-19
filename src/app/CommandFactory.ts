@@ -5,10 +5,12 @@ export class CommandFactory {
   constructor() {}
 
   AddCommand(command: string): void {
-    if (this._commandsList.length === 0) {
-      this.SetNumberOfCommands(command);
+    if (!this.CommandsAreComplete()) {
+      if (this._commandsList.length === 0) {
+        this.SetNumberOfCommands(command);
+      }
+      this._commandsList.push(command);
     }
-    this._commandsList.push(command);
   }
 
   CommandsAreComplete(): boolean {
@@ -19,5 +21,11 @@ export class CommandFactory {
 
   private SetNumberOfCommands(command: string): void {
     this._numberOfCommands = Number(command);
+    if (this._numberOfCommands < 0) {
+      this._numberOfCommands = 0;
+    }
+    if (this._numberOfCommands > 10000) {
+      this._numberOfCommands = 10000;
+    }
   }
 }
