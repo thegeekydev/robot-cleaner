@@ -1,6 +1,9 @@
+import Location from "@app/Location";
+
 export class CommandFactory {
   _numberOfCommands: number = 0;
   _commandsList: Array<string> = [];
+  startPosition: Location;
 
   constructor() {}
 
@@ -8,6 +11,8 @@ export class CommandFactory {
     if (!this.CommandsAreComplete()) {
       if (this._commandsList.length === 0) {
         this.SetNumberOfCommands(command);
+      } else if (this._commandsList.length === 1) {
+        this.setStartPosition(command);
       }
       this._commandsList.push(command);
     }
@@ -27,5 +32,10 @@ export class CommandFactory {
     if (this._numberOfCommands > 10000) {
       this._numberOfCommands = 10000;
     }
+  }
+
+  private setStartPosition(command) {
+    const [x, y] = command.split(" ");
+    this.startPosition = new Location(+x, +y);
   }
 }

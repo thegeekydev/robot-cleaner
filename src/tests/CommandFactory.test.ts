@@ -64,4 +64,15 @@ describe("Command Factory", () => {
 
     expect(commandFactory.CommandsAreComplete()).toBeTruthy();
   });
+
+  it("should be in the correct position", () => {
+    const commandFactory = new CommandFactory();
+
+    commandFactory.AddCommand("1");
+    commandFactory.AddCommand("20 30");
+    commandFactory.AddCommand("W 1");
+
+    expect(commandFactory.startPosition.x).toEqual(20);
+    expect(commandFactory.startPosition.y).toEqual(30);
+  });
 });

@@ -1,4 +1,4 @@
-import { RobotCleaner} from "@app/Robot";
+import { RobotCleaner } from "@app/Robot";
 
 describe("Robot cleaner", () => {
   describe("initialization", () => {
