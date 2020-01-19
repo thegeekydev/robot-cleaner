@@ -13,7 +13,7 @@ describe("Command Factory", () => {
     commandFactory.AddCommand("0 0");
     commandFactory.AddCommand("E 2");
 
-    expect(commandFactory.InputsAreComplete()).toBeTruthy();
+    expect(commandFactory.CommandsAreComplete()).toBeTruthy();
   });
 
   it("should check the numbers of commands are correct", () => {
@@ -26,6 +26,6 @@ describe("Command Factory", () => {
     commandFactory.AddCommand("E 2");
     commandFactory.AddCommand("W 1");
 
-    expect(commandFactory.InputsAreComplete()).toBeTruthy();
+    expect(commandFactory.CommandsAreComplete()).toBeTruthy();
   });
 });
